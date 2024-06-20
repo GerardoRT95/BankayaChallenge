@@ -13,7 +13,7 @@ public class Abilities {
 
 	private Ability ability;
 	@JsonProperty("is_hidden")
-	private boolean isHidden;
+	private String isHidden;
 	private int slot;
 	
 }

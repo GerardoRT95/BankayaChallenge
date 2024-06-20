@@ -22,5 +22,7 @@ public class Pokemon {
 	private List<HeldItems> heldItems;
 	private Long id;
 	private String name;
+	@JsonProperty("location_area_encounters")
+	private String locationAreaEncounters;
 	
 }

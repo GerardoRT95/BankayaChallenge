@@ -1,28 +1,98 @@
 package com.bankaya.pokemon.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
-import com.bankaya.pokemon.dto.Pokemon;
+import org.springframework.ws.server.endpoint.annotation.Endpoint;
+import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
+import org.springframework.ws.server.endpoint.annotation.RequestPayload;
+import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
+
+import com.bankaya.pokemon.dto.Abilities;
+import com.bankaya.pokemon.dto.HeldItems;
 import com.bankaya.pokemon.service.MainService;
+import com.bankaya.pokemon.utilities.ObjectMapper;
 
-@RestController
-@RequestMapping("/pokemon")
+import https.github_com.gerardort95.AbilitiesRequest;
+import https.github_com.gerardort95.AbilitiesResponse;
+import https.github_com.gerardort95.BaseExperienceRequest;
+import https.github_com.gerardort95.BaseExperienceResponse;
+import https.github_com.gerardort95.HeldItemsRequest;
+import https.github_com.gerardort95.HeldItemsResponse;
+import https.github_com.gerardort95.IdRequest;
+import https.github_com.gerardort95.IdResponse;
+import https.github_com.gerardort95.LocationAreaEncountersRequest;
+import https.github_com.gerardort95.LocationAreaEncountersResponse;
+import https.github_com.gerardort95.NameRequest;
+import https.github_com.gerardort95.NameResponse;
+
+
+@Endpoint
 public class MainController {
 	
+	private static final String NAMESPACE_URI = "https://github.com/GerardoRT95";
+	
 	private MainService service;
+	private ObjectMapper mapper;
 	
-	public MainController(MainService service) {
+	public MainController(MainService service, ObjectMapper mapper) {
 		this.service = service;
+		this.mapper = mapper;
 	}
 	
-	@GetMapping("/{name}")
-	@ResponseBody
-	public Pokemon getPokemon(@PathVariable String name) {
-		return service.getPokemon(name);
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "abilitiesRequest")
+	@ResponsePayload
+	public AbilitiesResponse getPokemon(@RequestPayload AbilitiesRequest request) {
+		List<Abilities> abilities = service.getAbilities(request.getName());
+		AbilitiesResponse response = new AbilitiesResponse();
+		List<https.github_com.gerardort95.Abilities> resAbilities = mapper.mapListAbilities(abilities);
+		response.getAbilities().addAll(resAbilities);
+		return response;
 	}
-
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "base_experienceRequest")
+	@ResponsePayload
+	public BaseExperienceResponse getPokemon(@RequestPayload BaseExperienceRequest request) {
+		Long res = service.getBaseExperience(request.getName());
+		BaseExperienceResponse response = new BaseExperienceResponse();
+		response.setBaseExperience(res);
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "held_itemsRequest")
+	@ResponsePayload
+	public HeldItemsResponse getHeldItems(@RequestPayload HeldItemsRequest request) {
+		List<HeldItems> heldItems = service.getHeldItems(request.getName());
+		HeldItemsResponse response = new HeldItemsResponse();
+		List<https.github_com.gerardort95.HeldItems> resHeldItems = mapper.mapListHeldItems(heldItems);
+		response.getHeldItems().addAll(resHeldItems);
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "idRequest")
+	@ResponsePayload
+	public IdResponse getId(@RequestPayload IdRequest request) {
+		Long res = service.getId(request.getName());
+		IdResponse response = new IdResponse();
+		response.setId(res);
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "nameRequest")
+	@ResponsePayload
+	public NameResponse getId(@RequestPayload NameRequest request) {
+		String res = service.getName(request.getName());
+		NameResponse response = new NameResponse();
+		response.setName(res);
+		return response;
+	}
+	
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "location_area_encountersRequest")
+	@ResponsePayload
+	public LocationAreaEncountersResponse getId(@RequestPayload LocationAreaEncountersRequest request) {
+		String res = service.getLocationAreaEncounters(request.getName());
+		LocationAreaEncountersResponse response = new LocationAreaEncountersResponse();
+		response.setLocationAreaEncounters(res);
+		return response;
+	}
+	
 }
