@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="https://github.com/GerardoRT95" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="https://github.com/GerardoRT95" targetNamespace="https://github.com/GerardoRT95">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://github.com/GerardoRT95">
+
+	<!-- Endpoints -->
+	
+    <xs:element name="abilitiesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="base_experienceRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="held_itemsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="idRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="nameRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="location_area_encountersRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- Responses -->
+    
+    <xs:element name="abilitiesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="abilities" type="tns:abilities"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="base_experienceResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="base_experience" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="held_itemsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="held_items" type="tns:held_items"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="idResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="nameResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="location_area_encountersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="location_area_encounters" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- Types -->
+
+	<xs:complexType name="abilities">
+        <xs:sequence>
+            <xs:element name="ability" type="tns:ability"/>
+            <xs:element name="slot" type="xs:int"/>
+            <xs:element name="is_hidden" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+	<xs:complexType name="ability">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="url" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="held_items">
+        <xs:sequence>
+            <xs:element name="item" type="tns:item"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="item">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="url" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="location_area_encounters">
+        <xs:sequence>
+            <xs:element name="location_area" type="tns:location_area"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="location_area">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="url" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="nameRequest">
+    <wsdl:part element="tns:nameRequest" name="nameRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="base_experienceResponse">
+    <wsdl:part element="tns:base_experienceResponse" name="base_experienceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="abilitiesResponse">
+    <wsdl:part element="tns:abilitiesResponse" name="abilitiesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="nameResponse">
+    <wsdl:part element="tns:nameResponse" name="nameResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="abilitiesRequest">
+    <wsdl:part element="tns:abilitiesRequest" name="abilitiesRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="idRequest">
+    <wsdl:part element="tns:idRequest" name="idRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="base_experienceRequest">
+    <wsdl:part element="tns:base_experienceRequest" name="base_experienceRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="held_itemsResponse">
+    <wsdl:part element="tns:held_itemsResponse" name="held_itemsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="held_itemsRequest">
+    <wsdl:part element="tns:held_itemsRequest" name="held_itemsRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="location_area_encountersRequest">
+    <wsdl:part element="tns:location_area_encountersRequest" name="location_area_encountersRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="idResponse">
+    <wsdl:part element="tns:idResponse" name="idResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="location_area_encountersResponse">
+    <wsdl:part element="tns:location_area_encountersResponse" name="location_area_encountersResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Bankaya Challenge">
+    <wsdl:operation name="name">
+      <wsdl:input message="tns:nameRequest" name="nameRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:nameResponse" name="nameResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="base_experience">
+      <wsdl:input message="tns:base_experienceRequest" name="base_experienceRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:base_experienceResponse" name="base_experienceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="abilities">
+      <wsdl:input message="tns:abilitiesRequest" name="abilitiesRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:abilitiesResponse" name="abilitiesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="id">
+      <wsdl:input message="tns:idRequest" name="idRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:idResponse" name="idResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="held_items">
+      <wsdl:input message="tns:held_itemsRequest" name="held_itemsRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:held_itemsResponse" name="held_itemsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="location_area_encounters">
+      <wsdl:input message="tns:location_area_encountersRequest" name="location_area_encountersRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:location_area_encountersResponse" name="location_area_encountersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Bankaya ChallengeSoap11" type="tns:Bankaya Challenge">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="name">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="nameRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="nameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="base_experience">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="base_experienceRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="base_experienceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="abilities">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="abilitiesRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="abilitiesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="id">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="idRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="idResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="held_items">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="held_itemsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="held_itemsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="location_area_encounters">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="location_area_encountersRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="location_area_encountersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Bankaya ChallengeService">
+    <wsdl:port binding="tns:Bankaya ChallengeSoap11" name="Bankaya ChallengeSoap11">
+      <soap:address location="http://localhost:9095/pokemon"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
