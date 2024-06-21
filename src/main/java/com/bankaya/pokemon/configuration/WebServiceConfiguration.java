@@ -16,19 +16,21 @@ import org.springframework.xml.xsd.XsdSchema;
 @Configuration
 public class WebServiceConfiguration extends WsConfigurerAdapter{
 	
+	//Configuracion para el servicio soap
+	
 	@Bean
 	public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext applicationContext) {
 	    MessageDispatcherServlet servlet = new MessageDispatcherServlet();
 	    servlet.setApplicationContext(applicationContext);
 	    servlet.setTransformWsdlLocations(true);
-	    return new ServletRegistrationBean<>(servlet, "/ws/*");
+	    return new ServletRegistrationBean<>(servlet, "/pokemon/*");
 	}
 	
 	@Bean(name = "pokemon")
 	public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema pokemonSchema) {
 		DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
 		wsdl11Definition.setPortTypeName("Bankaya Challenge");
-		wsdl11Definition.setLocationUri("/ws");
+		wsdl11Definition.setLocationUri("/pokemon");
 		wsdl11Definition.setTargetNamespace("https://github.com/GerardoRT95");
 		wsdl11Definition.setSchema(pokemonSchema);
 		return wsdl11Definition;

@@ -25,13 +25,14 @@ import https.github_com.gerardort95.LocationAreaEncountersResponse;
 import https.github_com.gerardort95.NameRequest;
 import https.github_com.gerardort95.NameResponse;
 
-
 @Endpoint
 public class MainController {
 	
 	private static final String NAMESPACE_URI = "https://github.com/GerardoRT95";
 	
+	//Objeto del servicio para realizar la logica de la aplicacion
 	private MainService service;
+	//Objeto para mappear entre pojos internos y los generados para la respuesta del servicio
 	private ObjectMapper mapper;
 	
 	
@@ -40,12 +41,17 @@ public class MainController {
 		this.mapper = mapper;
 	}
 	
+	//Metodos para cada endpoint
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "abilitiesRequest")
 	@ResponsePayload
 	public AbilitiesResponse getPokemon(@RequestPayload AbilitiesRequest request) {
+		//Se llama al servio para que devuelva el objeto requerido
 		List<Abilities> abilities = service.getAbilities(request.getName());
+		//Se crea un objeto para la respuesta
 		AbilitiesResponse response = new AbilitiesResponse();
+		//Se mapea el pojo interno hacia el objeto requrido para la respuesta
 		List<https.github_com.gerardort95.Abilities> resAbilities = mapper.mapListAbilities(abilities);
+		//Se copia la lista
 		response.getAbilities().addAll(resAbilities);
 		return response;
 	}
