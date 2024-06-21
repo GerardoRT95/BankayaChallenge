@@ -1,4 +1,4 @@
-package com.bankaya.pokemon.dto.configuration;
+package com.bankaya.pokemon.configuration;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
